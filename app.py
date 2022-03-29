@@ -32,14 +32,14 @@ def main():
     model = load_bert_model()
     faiss_index = load_faiss_index()
 
-    st.title("Vector-based searches with Sentence Transformers and Faiss")
+    st.title("Vector-based searches with Sentence Transformers and Faiss for Employees")
 
     # User search
-    user_input = st.text_area("Search box", "covid-19 misinformation and social media")
+    user_input = st.text_area("Search box", "employee info..")
 
     # Filters
     st.sidebar.markdown("**Filters**")
-    filter_year = st.sidebar.slider("Publication year", 2010, 2021, (2010, 2021), 1)
+    filter_year = st.sidebar.slider("Join year", 2010, 2021, (2010, 2021), 1)
     num_results = st.sidebar.slider("Number of search results", 10, 50, 10)
 
     # Fetch results
@@ -60,8 +60,8 @@ def main():
 
             st.write(
                 f"""**{f.iloc[0].Title}**  
-            **Publication year**: {f.iloc[0].year}  
-            **Abstract**
+            **Join year**: {f.iloc[0].year}  
+            **Skills**
             {f.iloc[0].Skills}
             """
             )
