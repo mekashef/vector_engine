@@ -7,7 +7,7 @@ from vector_engine.utils import vector_search
 
 
 @st.cache
-def read_data(data="data/misinformation_papers.csv"):
+def read_data(data="data/employee_dummy.csv"):
     """Read the data from local."""
     return pd.read_csv(data)
 
@@ -19,7 +19,7 @@ def load_bert_model(name="distilbert-base-nli-stsb-mean-tokens"):
 
 
 @st.cache(allow_output_mutation=True)
-def load_faiss_index(path_to_faiss="models/faiss_index.pickle"):
+def load_faiss_index(path_to_faiss="models/faiss_index4.pickle"):
     """Load and deserialize the Faiss index."""
     with open(path_to_faiss, "rb") as h:
         data = pickle.load(h)
@@ -40,7 +40,6 @@ def main():
     # Filters
     st.sidebar.markdown("**Filters**")
     filter_year = st.sidebar.slider("Publication year", 2010, 2021, (2010, 2021), 1)
-    filter_citations = st.sidebar.slider("Citations", 0, 250, 0)
     num_results = st.sidebar.slider("Number of search results", 10, 50, 10)
 
     # Fetch results
@@ -51,7 +50,6 @@ def main():
         frame = data[
             (data.year >= filter_year[0])
             & (data.year <= filter_year[1])
-            & (data.citations >= filter_citations)
         ]
         # Get individual results
         for id_ in I.flatten().tolist():
@@ -61,11 +59,10 @@ def main():
                 continue
 
             st.write(
-                f"""**{f.iloc[0].original_title}**  
-            **Citations**: {f.iloc[0].citations}  
+                f"""**{f.iloc[0].Title}**  
             **Publication year**: {f.iloc[0].year}  
             **Abstract**
-            {f.iloc[0].abstract}
+            {f.iloc[0].Skills}
             """
             )
 
