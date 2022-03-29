@@ -1,4 +1,4 @@
-# Building a semantic search engine with Transformers and Faiss
+# Building a semantic search engine with Transformers and Faiss around Employee Data
 
 ## This is a fork off of: https://github.com/kstathou/vector_engine adapted to create employee based search engine solutions
 * Other interesting nlp to plug in: https://index.quantumstat.com
